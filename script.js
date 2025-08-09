@@ -56,18 +56,3 @@ cityInput.addEventListener('keypress', (e) => {
     if (city) getWeather(city);
   }
 });
-
-window.addEventListener('load', () => {
-  if (navigator.geolocation) {
-    navigator.geolocation.getCurrentPosition(pos => {
-      fetch(`/api/weather?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`)
-        .then(res => res.json())
-        .then(data => {
-          if (!data.error) {
-            displayCurrentWeather(data.current);
-            displayForecast(data.forecast);
-          }
-        });
-    });
-  }
-});
